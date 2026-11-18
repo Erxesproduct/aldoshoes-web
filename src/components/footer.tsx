@@ -3,7 +3,7 @@ import Link from "next/link";
 import { business, storeMap } from "@/content/business";
 import { formatPrice } from "@/lib/format";
 import { NAV } from "./header";
-import { FacebookIcon, PhoneIcon, PinIcon } from "./icons";
+import { FacebookIcon, MailIcon, PhoneIcon, PinIcon } from "./icons";
 
 export function Footer() {
   return (
@@ -50,6 +50,15 @@ export function Footer() {
             <span>
               <span className="block text-[12px] tracking-widest text-white/50 uppercase">Утас</span>
               <span className="display block text-[28px] leading-none tracking-wide">{business.phone.display}</span>
+            </span>
+          </a>
+          <a href={`mailto:${business.email}`} className="mt-3 flex items-center gap-4 border border-white/15 p-4 transition hover:border-white">
+            <span className="grid h-11 w-11 shrink-0 place-items-center rounded-full bg-white text-ink">
+              <MailIcon size={19} />
+            </span>
+            <span className="min-w-0">
+              <span className="block text-[12px] tracking-widest text-white/50 uppercase">Имэйл</span>
+              <span className="block truncate text-[16px] font-semibold">{business.email}</span>
             </span>
           </a>
           <ul className="mt-3 grid gap-3 sm:grid-cols-3">

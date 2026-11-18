@@ -156,5 +156,5 @@ Steps for a real test order:
 8. **17 products of unknown kind** (no ALDO type in the name, no subcategory): placed as shoes when they have size
    variants, otherwise «Бусад аксессуар». Staff should check the `categoryCode` column.
 9. **22 products without a photo**, and the **2 products hidden on Zochil** (1,180 vs 1,178).
-10. **Email**: the shop settings list `social.botmax@gmail.com`; it looks like an agency address, so the website does
-    not show it. Which email should customers use?
+10. **Email**: the shop settings list `social.botmax@gmail.com` (the only email on Zochil). The website shows it in
+    the footer and on `/info`; it looks like an agency address, so confirm it is the one customers should use.

@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { FacebookIcon, PhoneIcon, PinIcon } from "@/components/icons";
+import { FacebookIcon, MailIcon, PhoneIcon, PinIcon } from "@/components/icons";
 import { SizeFinder } from "@/components/size-finder";
 import { business, storeMap } from "@/content/business";
 import { MEN_SIZE_CHART, WOMEN_SIZES } from "@/lib/catalog";
@@ -160,6 +160,9 @@ export default function InfoPage() {
           </a>
           <a href={business.messenger} target="_blank" rel="noreferrer" className="btn btn-line">
             <FacebookIcon size={18} /> Facebook чат
+          </a>
+          <a href={`mailto:${business.email}`} className="btn btn-line">
+            <MailIcon size={18} /> {business.email}
           </a>
         </div>
       </section>
