@@ -85,3 +85,15 @@ three (`backend/plugins/payment_api/src/constants.ts`: qpay, storepay, pocket).
 
 Website (done): checkout offers **QPay**, **StorePay** and **Pocket**, validated on the server (anything else is
 rejected). The online total is the goods only; delivery is paid to the courier (section 1.4).
+
+## 1.3 eBarimt setup
+
+Zochil has no eBarimt setting for this shop.
+
+1. Collect from ALDO: company TIN, district code (СБД), VAT status, product classification codes (footwear, bags,
+   jewellery).
+2. Register for **PosAPI 3.0** (ebarimt.mn → Business → PosAPI) and install the PosAPI service.
+3. **Settings → eBarimt → Add**: PosAPI URL, TIN, district code, VAT switches; assign it to the website pipeline.
+
+Website (done): checkout asks «Хувь хүн» or «Байгууллага»; a company needs a 7-digit registry number, validated on the
+server; the order message carries it.
