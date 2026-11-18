@@ -120,3 +120,41 @@ server; the order message carries it.
 2. **Sales → Boards → «Онлайн захиалга» → pipeline «Вэбсайт»**, stages: Шинэ захиалга → Хэмжээ, үлдэгдэл шалгасан →
    Төлбөр хүлээгдэж буй → Төлбөр баталгаажсан → Хүргэлтэд гарсан → Хүргэгдсэн, plus «Цуцлагдсан» and «Солилт (24 цаг)».
 3. **Frontline → Forms → (order form) → Settings**: create a sales card in «Шинэ захиалга» for every submission.
+
+## 1.5 Test order from cart to receipt
+
+**Verified on a local production build:** `npm run test:order -- http://localhost:3142` passes **27 checks**: empty
+cart, unknown product, shoes without a size, a size outside the range, a listed Zochil size, a sold-out product, more
+than the stock, quantity over 10, the browser's price ignored; A zone (10,000₮ to the courier), B zone (20,000₮) and
+countryside (null) with the same online total; pick-up rejected; address required; QPay, StorePay and Pocket accepted;
+HiPay and unknown payment rejected; unknown delivery; company registry rejected and accepted; phone (incl. +976),
+email, honeypot. Without erxes the order returns `503 not_configured` and the checkout shows the phone number, the
+reference (`AL-YYMMDD-XXXX`) and the total.
+
+Steps for a real test order:
+
+1. **Frontline → Forms → Create** «Вэбсайт захиалга» with fields Нэр, Утас, Имэйл, Захиалга. Copy the form id and
+   the field ids.
+2. In Vercel set `ERXES_API_URL`, `ERXES_ORDER_FORM_ID`, `ERXES_ORDER_FIELD_IDS`, then redeploy.
+3. Run `npm run test:order -- https://<production url> --send`. Expect an online total of 2 × the cheapest non-shoe
+   item + the cheapest shoe (the script prints it; **127,998₮** with today's catalog), delivery 10,000₮ to the courier.
+4. In erxes: find the submission and its card → confirm the size → send the QPay invoice and pay it → issue the
+   eBarimt → move the card to «Хүргэгдсэн» → void the test order.
+
+---
+
+## Open questions for ALDO
+
+1. **Women's size chart**: the shop only published the men's chart. Is EU 35–41 right for women?
+2. **Per-size stock**: Zochil lists sizes for 16 shoes only. Can the stock be exported per size (for erxes variants)?
+3. **Zone A / B borders**: the post «Хүргэлтийн бүс» shows a size chart instead of the map. Which districts are A and B?
+4. **Countryside fee**: fixed amount, or always quoted by phone?
+5. **Pick-up** at Шангри-Ла, Их Дэлгүүр or Хүннү Молл: offer it online?
+6. **QPay / StorePay / Pocket credentials** outside Zochil; TIN and PosAPI for eBarimt.
+7. **Duplicate ALDO article numbers**: 16312349 (499970, 499969), 17537292 (811159, 810138), 17537412 (811161,
+   810144). Same item listed twice?
+8. **17 products of unknown kind** (no ALDO type in the name, no subcategory): placed as shoes when they have size
+   variants, otherwise «Бусад аксессуар». Staff should check the `categoryCode` column.
+9. **22 products without a photo**, and the **2 products hidden on Zochil** (1,180 vs 1,178).
+10. **Email**: the shop settings list `social.botmax@gmail.com`; it looks like an agency address, so the website does
+    not show it. Which email should customers use?
