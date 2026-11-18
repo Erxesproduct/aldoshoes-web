@@ -1,0 +1,276 @@
+@import "tailwindcss";
+
+/*
+ * «Catwalk»: an editorial runway on warm bone paper. Products stand in light-grey studio boxes (the same grey as the
+ * ALDO photos), big condensed uppercase headlines, ink black type, one cherry red for sale and actions, nude and chrome
+ * for small accents. Ticker tapes, a spinning season seal and a self-running runway strip keep it moving.
+ */
+@theme {
+  --color-bone: #f5f1ea;
+  --color-bone-2: #ebe4d8;
+  --color-studio: #efeeec;
+  --color-ink: #151413;
+  --color-ink-2: #4a4641;
+  --color-mute: #8a847b;
+  --color-line: #ddd5c8;
+  --color-cherry: #e1242e;
+  --color-cherry-2: #b8121b;
+  --color-nude: #ead2bf;
+  --color-chrome: #c9cbcf;
+
+  --font-display: var(--nf-display), "Fira Sans Extra Condensed", "Arial Narrow", sans-serif;
+  --font-sans: var(--nf-sans), "Commissioner", system-ui, sans-serif;
+}
+
+:root {
+  --ink: #151413;
+  --cherry: #e1242e;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    -webkit-tap-highlight-color: transparent;
+  }
+  body {
+    background: var(--color-bone);
+    color: var(--color-ink);
+    font-family: var(--font-sans);
+    font-size: 16px;
+    line-height: 1.6;
+  }
+  ::selection {
+    background: var(--cherry);
+    color: #fff;
+  }
+  .grid > * {
+    min-width: 0;
+  }
+  :focus-visible {
+    outline: 2px solid var(--cherry);
+    outline-offset: 2px;
+  }
+}
+
+@layer components {
+  .wrap {
+    margin-inline: auto;
+    width: 100%;
+    max-width: 1320px;
+    padding-inline: 16px;
+  }
+  @media (min-width: 768px) {
+    .wrap {
+      padding-inline: 32px;
+    }
+  }
+  .display {
+    font-family: var(--font-display);
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: -0.005em;
+    line-height: 0.9;
+  }
+  .kicker {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 14px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+  }
+  .outline-text {
+    color: transparent;
+    -webkit-text-stroke: 1.5px var(--ink);
+  }
+  .studio {
+    background: var(--color-studio);
+  }
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.6rem;
+    min-height: 50px;
+    padding: 0 1.6rem;
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 17px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    white-space: nowrap;
+    transition:
+      background-color 0.2s,
+      color 0.2s,
+      transform 0.2s;
+  }
+  .btn:active {
+    transform: scale(0.98);
+  }
+  .btn-ink {
+    background: var(--ink);
+    color: #fff;
+  }
+  .btn-ink:hover {
+    background: var(--cherry);
+  }
+  .btn-cherry {
+    background: var(--cherry);
+    color: #fff;
+  }
+  .btn-cherry:hover {
+    background: var(--color-cherry-2);
+  }
+  .btn-line {
+    border: 1.5px solid var(--ink);
+    color: var(--ink);
+  }
+  .btn-line:hover {
+    background: var(--ink);
+    color: #fff;
+  }
+  .chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    min-height: 38px;
+    padding: 0 1rem;
+    border: 1.5px solid var(--color-line);
+    background: #fff;
+    font-size: 14px;
+    font-weight: 600;
+    white-space: nowrap;
+    transition:
+      border-color 0.15s,
+      background-color 0.15s;
+  }
+  .chip:hover {
+    border-color: var(--ink);
+  }
+  .chip[aria-current="true"],
+  .chip[aria-pressed="true"] {
+    border-color: var(--ink);
+    background: var(--ink);
+    color: #fff;
+  }
+  .swatch {
+    display: inline-block;
+    width: 22px;
+    height: 22px;
+    border-radius: 999px;
+    box-shadow:
+      inset 0 0 0 1px rgb(0 0 0 / 0.12),
+      0 0 0 2px #fff;
+  }
+  .sticker {
+    display: inline-grid;
+    place-items: center;
+    border-radius: 999px;
+    background: var(--cherry);
+    color: #fff;
+    font-family: var(--font-display);
+    font-weight: 800;
+    line-height: 1;
+  }
+  .marquee {
+    display: flex;
+    width: max-content;
+    animation: marquee 40s linear infinite;
+  }
+  .marquee-slow {
+    animation-duration: 90s;
+  }
+  .marquee:hover {
+    animation-play-state: paused;
+  }
+  .spin-slow {
+    animation: spin 22s linear infinite;
+  }
+  .scroller {
+    display: grid;
+    grid-auto-flow: column;
+    grid-auto-columns: minmax(200px, 250px);
+    gap: 16px;
+    overflow-x: auto;
+    overscroll-behavior-x: contain;
+    scroll-snap-type: x mandatory;
+    padding-bottom: 12px;
+    scrollbar-width: thin;
+    scrollbar-color: var(--ink) transparent;
+  }
+  .scroller > * {
+    scroll-snap-align: start;
+  }
+  .prose-aldo p,
+  .prose-aldo li {
+    margin-top: 0.6em;
+    color: var(--color-ink-2);
+    line-height: 1.75;
+  }
+  .prose-aldo li {
+    position: relative;
+    padding-left: 1.2em;
+  }
+  .prose-aldo li::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0.75em;
+    width: 0.55em;
+    height: 2px;
+    background: var(--cherry);
+  }
+  .reveal-armed {
+    opacity: 0;
+    transform: translateY(22px);
+  }
+  .reveal-armed.reveal-in {
+    opacity: 1;
+    transform: none;
+    transition:
+      opacity 0.7s ease var(--d, 0ms),
+      transform 0.7s cubic-bezier(0.2, 0.8, 0.2, 1) var(--d, 0ms);
+  }
+  .fade-in {
+    animation: fade 0.45s ease;
+  }
+}
+
+@keyframes marquee {
+  to {
+    transform: translateX(-50%);
+  }
+}
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+@keyframes fade {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+@keyframes kenburns {
+  from {
+    transform: scale(1.08);
+  }
+  to {
+    transform: scale(1);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
