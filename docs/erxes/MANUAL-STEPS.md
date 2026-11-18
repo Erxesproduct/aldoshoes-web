@@ -70,3 +70,18 @@ Steps:
    shows an «ALDO» placeholder.
 6. Run `npm run sync:erxes` once with a Client Portal token to confirm the codes match (it also refreshes
    `src/data/lite.json`, which the cart reads).
+
+## 1.2 Payment setup (QPay)
+
+Zochil: QPay (`qpay2`), StorePay and Pocket; the payment rule names all three. erxes 3.0 has payment kinds for all
+three (`backend/plugins/payment_api/src/constants.ts`: qpay, storepay, pocket).
+
+1. Get ALDO's own merchant credentials (ask Zochil / QPay whether the existing merchant can be used outside Zochil):
+   QPay `client_id`, `client_secret`, `invoice_code`; StorePay store id, username, password, app username / password;
+   Pocket merchant / terminal credentials. Owner: Terbish / ALDO.
+2. **Settings → Payments → Add → QPay**: enter them. **Settings → Payments → (QPay) → Test**: a 100₮ invoice.
+3. **Settings → Payments → Add → StorePay** and **Add → Pocket**: same, then a test invoice each.
+4. **Sales → Pipelines → «Вэбсайт» → Settings → Payments**: select QPay, StorePay and Pocket.
+
+Website (done): checkout offers **QPay**, **StorePay** and **Pocket**, validated on the server (anything else is
+rejected). The online total is the goods only; delivery is paid to the courier (section 1.4).
