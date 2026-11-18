@@ -1,0 +1,21 @@
+code,name,parentCode,productCount
+AL,ALDO Shoes Mongolia,,1178
+AL-women,Эмэгтэй,AL,1009
+AL-men,Эрэгтэй,AL,169
+AL-men-bags,Эрэгтэй · Цүнх,AL-men,13
+AL-men-boots,Эрэгтэй · Ботинк,AL-men,39
+AL-men-other,Эрэгтэй · Бусад аксессуар,AL-men,5
+AL-men-sandals,"Эрэгтэй · Сандаал, углааш",AL-men,10
+AL-men-shoes,Эрэгтэй · Гутал,AL-men,2
+AL-men-sneakers,"Эрэгтэй · Кет, пүүз",AL-men,98
+AL-men-wallets,Эрэгтэй · Түрийвч,AL-men,2
+AL-women-bags,Эмэгтэй · Цүнх,AL-women,288
+AL-women-boots,Эмэгтэй · Ботинк,AL-women,106
+AL-women-heels,Эмэгтэй · Өндөр өсгийт,AL-women,165
+AL-women-jewelry,Эмэгтэй · Гоёл чимэглэл,AL-women,96
+AL-women-other,Эмэгтэй · Бусад аксессуар,AL-women,26
+AL-women-sandals,"Эмэгтэй · Сандаал, углааш",AL-women,191
+AL-women-shoes,Эмэгтэй · Гутал,AL-women,6
+AL-women-sneakers,"Эмэгтэй · Кет, пүүз",AL-women,100
+AL-women-sunglasses,Эмэгтэй · Нарны шил,AL-women,13
+AL-women-wallets,Эмэгтэй · Түрийвч,AL-women,18
