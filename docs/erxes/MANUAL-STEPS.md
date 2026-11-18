@@ -97,3 +97,26 @@ Zochil has no eBarimt setting for this shop.
 
 Website (done): checkout asks «Хувь хүн» or «Байгууллага»; a company needs a 7-digit registry number, validated on the
 server; the order message carries it.
+
+## 1.4 Delivery zones, fees and order statuses
+
+**Website (done)**, from the Zochil delivery rule of shop 10783:
+
+| Option | Fee | Note |
+| --- | --- | --- |
+| Хот дотор · А бүс | 10,000₮ | Paid to the courier on receipt |
+| Хот дотор · Б бүс | 20,000₮ | Paid to the courier on receipt |
+| Орон нутаг | told by phone | Монгол шуудан or local transport |
+
+- Delivery 24–48 h after confirmation. Pick-up is not enabled on Zochil, so it is not offered online (the three stores
+  are shown for trying on and exchanges). The fee is **not** part of the online total; the server returns it as
+  `deliveryFee` (null for countryside) and the order message says «хүлээн авахдаа хүргэгчид төлнө».
+- Exchange within 24 h at a branch, no returns, sale items not exchanged: shown on product pages, cart and `/info`.
+
+**erxes (manual):**
+
+1. Import `docs/erxes/aldo-delivery.csv`: services `DELIVERY-A` (10,000₮), `DELIVERY-B` (20,000₮),
+   `DELIVERY-COUNTRYSIDE` (no price).
+2. **Sales → Boards → «Онлайн захиалга» → pipeline «Вэбсайт»**, stages: Шинэ захиалга → Хэмжээ, үлдэгдэл шалгасан →
+   Төлбөр хүлээгдэж буй → Төлбөр баталгаажсан → Хүргэлтэд гарсан → Хүргэгдсэн, plus «Цуцлагдсан» and «Солилт (24 цаг)».
+3. **Frontline → Forms → (order form) → Settings**: create a sales card in «Шинэ захиалга» for every submission.
